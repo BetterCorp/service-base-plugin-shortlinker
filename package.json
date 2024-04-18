@@ -1,0 +1,45 @@
+{
+  "name": "@bettercorp/service-base-plugin-shortlinker",
+  "license": "AGPL-3.0-only",
+  "repository": {
+    "url": "git+https://github.com/BetterCorp/service-base-plugin-shortlinke.git"
+  },
+  "scripts": {
+    "build": "npm run build-plugin",
+    "build-plugin": "rm -rfv ./lib && tsc",
+    "build-clients": "node node_modules/@bettercorp/service-base/build-lib-clients.js",
+    "dev": "nodemon --config nodemon.json",
+    "start": "ts-node node_modules/@bettercorp/service-base/lib/cli.js",
+    "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
+    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' node ./node_modules/nyc/bin/nyc.js --reporter json --reporter lcov ./node_modules/mocha/bin/mocha.js -r ts-node/register 'src/tests/**/*.ts' --reporter json --reporter-options output=junit.json",
+    "testDev": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' node ./node_modules/nyc/bin/nyc.js ./node_modules/mocha/bin/mocha.js -r ts-node/register 'src/tests/**/*.ts'"
+  },
+  "files": [
+    "lib/**/*"
+  ],
+  "main": "lib/index.js",
+  "version": "1.0.0",
+  "bsb_project": true,
+  "devDependencies": {
+    "@types/assert": "^1.5.10",
+    "@types/chai": "^4.3.11",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.11.4",
+    "@types/yargs": "^17.0.32",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "chai": "^5.0.0",
+    "eslint": "^8.56.0",
+    "mocha": "^10.2.0",
+    "nyc": "^15.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@bettercorp/service-base": "^8.5.63",
+    "@bettercorp/service-base-plugin-events-rabbitmq": "^4.0.1",
+    "@bettercorp/service-base-plugin-fastify": "^2.3.8",
+    "@bettercorp/tools": "^3.7.0",
+    "zod": "^3.22.4"
+  }
+}
